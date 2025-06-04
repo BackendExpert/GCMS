@@ -1,22 +1,41 @@
 import React from 'react'
 
-const FileInput = ({ label, name, onChange, required = false, accept, multiple = false }) => {
+const FileInput = ({
+    label,
+    name,
+    onChange,
+    required = false,
+    accept,
+    multiple = false,
+    disabled = false,
+    className = '',
+}) => {
     return (
-        <div className="mb-5">
+        <div className="mb-6">
             {label && (
-                <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
-                    {label}
+                <label
+                    htmlFor={name}
+                    className="block mb-2 text-sm font-semibold text-gray-900 cursor-pointer"
+                >
+                    {label} {required && <span className="text-red-500">*</span>}
                 </label>
             )}
             <input
                 type="file"
-                name={name}
                 id={name}
+                name={name}
                 onChange={onChange}
                 required={required}
                 accept={accept}
                 multiple={multiple}
-                className="block w-full text-sm text-gray-700 border border-gray-300 rounded-md bg-white file:px-4 file:py-2 file:mr-4 file:border-0 file:bg-gray-100 file:text-gray-800 file:rounded-md hover:file:bg-gray-200 transition"
+                disabled={disabled}
+                className={`block w-full text-sm text-gray-700 border border-gray-300 rounded-lg
+          bg-white cursor-pointer
+          file:px-5 file:py-2 file:border-0 file:bg-indigo-100 file:text-indigo-700 file:font-semibold
+          file:rounded-lg hover:file:bg-indigo-200
+          focus:outline-none focus:ring-2 focus:ring-indigo-500
+          disabled:cursor-not-allowed disabled:opacity-50
+          transition ${className}`}
             />
         </div>
     )
