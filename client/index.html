@@ -1,13 +1,119 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GCMS</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <!-- Base Styles -->
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      box-sizing: border-box;
+    }
+
+    #language-controls {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: #f9f9f9;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    #language-controls button {
+      background-color: #6366f1;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    #language-controls button:hover {
+      background-color: #4f46e5;
+    }
+
+    #google_translate_element {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Google Translate Element -->
+  <div id="google_translate_element"></div>
+
+  <!-- Language Switcher -->
+  <div id="language-controls" aria-label="Language Switcher">
+    <button type="button" onclick="changeLang('en')">English</button>
+    <button type="button" onclick="changeLang('si')">සිං</button>
+    <button type="button" onclick="changeLang('ta')">த</button>
+  </div>
+
+  <!-- Google Translate Initialization -->
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,si,ta',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function changeLang(lang) {
+      const translationCode = lang === 'en' ? '/en/en' : `/en/${lang}`;
+      setCookie('googtrans', translationCode, 1);
+      document.cookie = `googtrans=${translationCode};path=/`;
+
+      // Also set hash for good measure
+      window.location.hash = translationCode;
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    }
+
+    (function () {
+      const googtrans = document.cookie.match('(^|;)\\s*googtrans\\s*=\\s*([^;]+)');
+      if (googtrans) {
+        const val = googtrans.pop();
+        if (val && val !== '/en/en') {
+          window.location.hash = val;
+        }
+      }
+    })();
+  </script>
+
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
