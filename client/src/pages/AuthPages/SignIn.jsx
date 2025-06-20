@@ -4,7 +4,7 @@ import DefaultBtn from '../../component/Button/DefaultBtn'
 
 const SignIn = () => {
     return (
-        <div className="min-h-[70vh] flex items-center justify-center bg-gray-50 px-4">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
             <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">
                     Sign In to Your Account

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
+        <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
             <FaUsers className="text-indigo-600 w-20 h-20 md:w-32 md:h-32 mb-6" />
 
             <h1 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">
