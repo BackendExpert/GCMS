@@ -8,6 +8,7 @@ import Test from './pages/HomePage/Test'
 import SignUp from './pages/AuthPages/SignUp'
 import ForgetPass from './pages/AuthPages/ForgetPass'
 import VerifyOTP from './pages/AuthPages/VerifyOTP'
+import UpdatePassword from './pages/AuthPages/UpdatePassword'
 
 function AppContent() {
     const location = useLocation()
@@ -22,6 +23,7 @@ function AppContent() {
                 <Route path='/Signup' element={<SignUp /> } />
                 <Route path='/forget-password' element={<ForgetPass /> } />
                 <Route path='/verify-otp' element={<VerifyOTP /> } />
+                <Route path='/update-password' element={<UpdatePassword /> } /> 
             </Routes>
             {!hideNavFooter && <Footer />}
         </>
