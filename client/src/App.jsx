@@ -6,6 +6,8 @@ import Navbar from './component/Nav/Navbar'
 import SignIn from './pages/AuthPages/SignIn'
 import Test from './pages/HomePage/Test'
 import SignUp from './pages/AuthPages/SignUp'
+import ForgetPass from './pages/AuthPages/ForgetPass'
+import VerifyOTP from './pages/AuthPages/VerifyOTP'
 
 function AppContent() {
     const location = useLocation()
@@ -18,6 +20,8 @@ function AppContent() {
                 <Route path='/Test' element={<Test /> } />
                 <Route path='/login' element={<SignIn /> } />
                 <Route path='/Signup' element={<SignUp /> } />
+                <Route path='/forget-password' element={<ForgetPass /> } />
+                <Route path='/verify-otp' element={<VerifyOTP /> } />
             </Routes>
             {!hideNavFooter && <Footer />}
         </>
