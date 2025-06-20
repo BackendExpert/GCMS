@@ -25,12 +25,12 @@ const Home = () => {
 
                 <span className="hidden sm:inline text-gray-400">|</span>
 
-                <Link to="/login">
+                <a href="/login">
                     <DefaultBtn
                         type="button"
                         label="Login to System"
                     />
-                </Link>
+                </a>
             </div>
         </div>
     );
